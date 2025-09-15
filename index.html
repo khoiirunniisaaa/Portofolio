@@ -9,32 +9,35 @@
     header{background:#0073e6;color:#fff;text-align:center;padding:36px 20px}
     header h1{margin:0;font-size:2.2em}
     header p{margin:8px 0}
-    section{max-width:1000px;margin:40px auto;padding:0 20px}
+    section{max-width:1100px;margin:40px auto;padding:0 20px}
     h2{color:#0073e6;border-bottom:2px solid #0073e6;padding-bottom:6px}
-    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .card{background:#fff;border:1px solid #ddd;border-radius:10px;box-shadow:0 2px 5px rgba(0,0,0,.08);overflow:hidden}
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.06);overflow:hidden}
     .card-body{padding:14px 16px 18px}
     .meta{display:flex;align-items:center;justify-content:space-between}
-    .tag{font-size:12px;background:#f3f4f6;border:1px solid #ddd;padding:2px 8px;border-radius:999px}
+    .tag{font-size:12px;background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 8px;border-radius:999px}
     .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .thumb{width:100%;height:180px;object-fit:cover}
     footer{background:#0073e6;color:#fff;text-align:center;padding:20px;margin-top:40px}
     @media(max-width:600px){header h1{font-size:1.6em}}
 
     /* Galeri & Lightbox */
     .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
     .gallery-grid.two{grid-template-columns:repeat(2,1fr)}
-    .gallery-grid img{width:100%;height:90px;object-fit:cover;border-radius:8px;cursor:pointer;border:1px solid #e5e7eb}
-    .thumb{width:100%;height:160px;object-fit:cover}
-    .lightbox{
-      position:fixed;inset:0;background:rgba(0,0,0,.8);
-      display:none;align-items:center;justify-content:center;z-index:9999;padding:20px
-    }
+    .gallery-grid img{width:100%;height:95px;object-fit:cover;border-radius:8px;cursor:pointer;border:1px solid #e5e7eb}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px}
     .lightbox.open{display:flex}
     .lightbox img{max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-    .lightbox .close{
-      position:absolute;top:16px;right:16px;background:#111827;color:#fff;border:none;
-      border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:700;font-size:20px
-    }
+    .lightbox .close{position:absolute;top:16px;right:16px;background:#111827;color:#fff;border:none;border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:700;font-size:20px}
+    figure{margin:10px 0}
+    figcaption{font-size:13px;color:#555;margin-top:6px}
+    details{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin-top:10px}
+    details summary{cursor:pointer;font-weight:700;color:#0b6efd}
+    .calc{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .calc input{padding:8px 10px;border:1px solid #d1d5db;border-radius:8px;width:120px}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e5e7eb;margin-right:6px;margin-top:6px;background:#fff}
+    .ok{color:#065f46;background:#d1fae5;border-color:#10b981}
+    .warn{color:#92400e;background:#fef3c7;border-color:#f59e0b}
   </style>
 </head>
 <body>
@@ -48,27 +51,26 @@
   <!-- PROFIL -->
   <section>
     <h2>Profil</h2>
-    <p>Sarjana Teknik Biomedis dengan keahlian sistem berbasis sensor & mikrokontroler,
-       pengolahan sinyal biomedis (ECG, EEG, Doppler), serta dokumentasi teknis.
-       Terampil menggunakan Python, MATLAB, dan Arduino.</p>
+    <p>Sarjana Teknik Biomedis dengan fokus sistem berbasis sensor & mikrokontroler, pengolahan sinyal (ECG, EEG, Doppler), dan rekonstruksi citra/volume (ECVT). Terampil Python, MATLAB, dan Arduino.</p>
   </section>
 
   <!-- PROYEK -->
   <section>
     <h2>Proyek</h2>
+
     <div class="grid">
-      <!-- Proyek 1: EMG tanpa gambar -->
+      <!-- EMG: tanpa gambar -->
       <div class="card">
         <div class="card-body">
           <div class="meta">
             <h3>Sistem Akuisisi Sinyal EMG</h3>
             <span class="tag">2023</span>
           </div>
-          <p>Mengembangkan sistem akuisisi sinyal EMG untuk gerakan supinasi–pronasi.</p>
+          <p>Perangkat akuisisi sinyal EMG untuk pengenalan gerakan supinasi–pronasi lengan.</p>
         </div>
       </div>
 
-      <!-- Proyek 2: Extra Finger dengan gambar -->
+      <!-- Extra Finger (Gambar 5) -->
       <div class="card">
         <img class="thumb" src="images/extra-finger.jpg" alt="Syndactyly Extra Finger">
         <div class="card-body">
@@ -76,71 +78,107 @@
             <h3>Syndactyly Extra Finger</h3>
             <span class="tag">2023</span>
           </div>
-          <p>Prototipe jari tambahan berbasis Arduino untuk penderita sindaktili.</p>
+          <p>Prototipe jari tambahan berbasis mikrokontroler untuk membantu fungsi genggam pengguna sindaktili.</p>
+          <details>
+            <summary>Fungsi alat</summary>
+            <ul>
+              <li>Aktuator menggerakkan jari tambahan untuk <em>pinch/grasp</em> sederhana.</li>
+              <li>Sensor posisi/limit memastikan rentang aman dan konsisten.</li>
+              <li>Kontroler Arduino mengatur pola gerak (manual/otomatis) untuk aktivitas harian.</li>
+            </ul>
+          </details>
         </div>
       </div>
 
-      <!-- Proyek 3: Kotak Alkes tanpa gambar -->
+      <!-- Kotak Alkes: tanpa gambar -->
       <div class="card">
         <div class="card-body">
           <div class="meta">
             <h3>Kotak Penyimpanan Alat Kesehatan</h3>
             <span class="tag">2023</span>
           </div>
-          <p>Sistem penyimpanan alat operasi dengan sensor proximity.</p>
+          <p>Sistem penyimpanan instrumen operasi dengan sensor proximity dan pencatatan penggunaan.</p>
         </div>
       </div>
 
-      <!-- Proyek 4: ECVT dengan 3 gambar -->
+      <!-- ECVT (Gambar 2–4) -->
       <article class="card">
-        <img class="thumb" src="images/ecvt-3d-1.jpg" alt="Rekonstruksi 2D→3D ECVT">
+        <img class="thumb" src="images/ecvt-3d-1.png" alt="ECVT Recon 2D→3D">
         <div class="card-body">
           <div class="meta">
             <h3>Rekonstruksi 2D→3D ECVT</h3>
             <span class="tag">2024</span>
           </div>
-          <p>Model rekonstruksi citra otak 3D dari data ECVT untuk analisis awal klinis.</p>
-          <div class="tags">
-            <span class="tag">ECVT</span><span class="tag">Reconstruction</span><span class="tag">Python/MATLAB</span>
-          </div>
+          <p>Rekonstruksi volume 3D dari proyeksi 2D Electrical Capacitance Volume Tomography untuk deteksi dini perubahan distribusi kapasitansi pada otak.</p>
           <div class="gallery-grid" data-gallery="ecvt">
-            <img src="images/ecvt-3d-1.jpg" alt="ECVT 1" data-full="images/ecvt-3d-1.jpg">
-            <img src="images/ecvt-3d-2.jpg" alt="ECVT 2" data-full="images/ecvt-3d-2.jpg">
-            <img src="images/ecvt-3d-3.jpg" alt="ECVT 3" data-full="images/ecvt-3d-3.jpg">
+            <img src="images/ecvt-3d-1.png" alt="ECVT axial" data-full="images/ecvt-3d-1.png">
+            <img src="images/ecvt-3d-2.png" alt="ECVT coronal" data-full="images/ecvt-3d-2.png">
+            <img src="images/ecvt-3d-3.png" alt="ECVT sagittal" data-full="images/ecvt-3d-3.png">
           </div>
+          <details>
+            <summary>Bagaimana membaca hasil ECVT?</summary>
+            <ul>
+              <li><b>Axial / Coronal / Sagittal</b>: tiga irisan ortogonal; perubahan intensitas menandakan perbedaan konduktivitas/permitivitas jaringan.</li>
+              <li><b>Konsistensi antar irisan</b>: pola yang muncul konsisten di beberapa irisan → indikasi nyata, bukan artefak.</li>
+              <li><b>Deteksi dini</b>: bandingkan dengan baseline/healthy template; deviasi spasial-temporal kecil dapat menandai area perlu evaluasi lanjut.</li>
+            </ul>
+          </details>
         </div>
       </article>
 
-      <!-- Proyek 5: IoT dengan 2 gambar -->
+      <!-- IoT Heart Rate (Gambar 6–7) + kalkulator zona -->
       <article class="card">
-        <img class="thumb" src="images/iot-heart-rate-1.jpg" alt="Monitoring Denyut Nadi IoT">
+        <img class="thumb" src="images/iot-heart-rate-1.jpg" alt="IoT Heart Rate device">
         <div class="card-body">
           <div class="meta">
-            <h3>Monitoring Denyut Nadi IoT</h3>
+            <h3>IoT Heart Rate – Monitoring & Zona Latihan</h3>
             <span class="tag">2024</span>
           </div>
-          <p>Pemantauan denyut nadi atlet ke dashboard cloud untuk pengendalian beban latihan.</p>
-          <div class="tags">
-            <span class="tag">IoT</span><span class="tag">ThingSpeak</span><span class="tag">Sensor</span>
-          </div>
+          <p>Perangkat wearable yang mengirimkan BPM ke dashboard (ThingSpeak) untuk pemantauan pelatih dan penentuan zona latihan optimal.</p>
           <div class="gallery-grid two" data-gallery="iot">
-            <img src="images/iot-heart-rate-1.jpg" alt="IoT 1" data-full="images/iot-heart-rate-1.jpg">
-            <img src="images/iot-heart-rate-2.jpg" alt="IoT 2" data-full="images/iot-heart-rate-2.jpg">
+            <img src="images/iot-heart-rate-1.jpg" alt="Wearable HR" data-full="images/iot-heart-rate-1.jpg">
+            <img src="images/iot-heart-rate-2.jpg" alt="Dashboard HR" data-full="images/iot-heart-rate-2.jpg">
           </div>
+
+          <!-- Kalkulator zona latihan -->
+          <details open>
+            <summary>Kalkulator zona latihan (otomatis)</summary>
+            <div class="calc">
+              <input type="number" id="age" placeholder="Umur (th)" min="5" max="100">
+              <input type="number" id="rest" placeholder="HR istirahat (BPM)" min="30" max="120">
+              <button id="calcBtn">Hitung zona</button>
+            </div>
+            <div id="zones" style="margin-top:8px;"></div>
+            <p style="font-size:13px;color:#555;margin-top:8px">
+              Rumus: <b>HRmax = 220 − umur</b>, <b>HRR = HRmax − HRist</b>, Target = HRist + %×HRR.
+              Zona: Recovery 50–60%, Easy 60–70%, Aerobic 70–80%, Threshold 80–90%, VO₂max 90–100%.
+            </p>
+          </details>
         </div>
       </article>
 
-      <!-- Proyek 6: Doppler -->
-      <div class="card">
-        <img class="thumb" src="images/doppler-cat.jpg" alt="TA: Audio Doppler Janin Kucing">
+      <!-- Doppler STFT (Gambar 1) -->
+      <article class="card">
+        <img class="thumb" src="images/doppler-cat.png" alt="STFT Doppler - Prediksi Jumlah Janin">
         <div class="card-body">
           <div class="meta">
-            <h3>TA: Analisis Audio Doppler Janin Kucing</h3>
+            <h3>Analisis Audio Doppler – Prediksi Jumlah Janin Kucing</h3>
             <span class="tag">2025</span>
           </div>
-          <p>Prediksi jumlah janin kucing dengan metode STFT & EMD.</p>
+          <p>Ekstraksi spektrum waktu-frekuensi menggunakan STFT untuk menghitung jumlah janin dari jumlah puncak ritme jantung fetus yang terpisah.</p>
+          <figure>
+            <figcaption><b>Cara membaca gambar:</b></figcaption>
+            <ol>
+              <li><b>Panel atas</b>: spektrogram 0–10 Hz; pita 2–4 Hz (garis putus-putus) ≈ 120–240 BPM (rentang detak janin).</li>
+              <li><b>Panel kiri bawah</b>: pembesaran 0–5 Hz untuk memisahkan pola ritme antar janin.</li>
+              <li><b>Panel kanan bawah</b>: spektrum rata-rata waktu; hitung jumlah <em>peak</em> dominan di 2–4 Hz → estimasi jumlah janin.</li>
+            </ol>
+            <p style="font-size:13px;color:#555;margin:6px 0 0;">
+              Praktisnya: identifikasi puncak yang <em>stabil</em> dan terpisah minimal ~0.2–0.3 Hz; abaikan noise/artefak sesaat.
+            </p>
+          </figure>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
@@ -156,29 +194,53 @@
   </div>
 
   <script>
+    // Lightbox
     (function(){
       const lb = document.getElementById('lightbox');
       const lbImg = lb.querySelector('img');
       const btnClose = lb.querySelector('.close');
-
-      // buka lightbox
       document.addEventListener('click', function(e){
         const t = e.target;
         if(t.tagName === 'IMG' && t.closest('.gallery-grid')){
           const full = t.getAttribute('data-full') || t.src;
-          lbImg.src = full;
-          lb.classList.add('open');
+          lbImg.src = full; lb.classList.add('open');
         }
       });
-
-      // tutup lightbox
-      function closeLB(){
-        lb.classList.remove('open');
-        setTimeout(()=>{ lbImg.src = ''; }, 150);
-      }
+      function closeLB(){ lb.classList.remove('open'); setTimeout(()=>{ lbImg.src=''; },150); }
       btnClose.addEventListener('click', closeLB);
-      lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLB(); });
-      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLB(); });
+      lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLB(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLB(); });
+    })();
+
+    // Kalkulator zona latihan (Karvonen)
+    (function(){
+      const age = document.getElementById('age');
+      const rest = document.getElementById('rest');
+      const btn = document.getElementById('calcBtn');
+      const out = document.getElementById('zones');
+
+      function fmt(n){ return Math.round(n); }
+      function range(val){ return `<span class="pill">${fmt(val[0])}–${fmt(val[1])} BPM</span>`; }
+
+      btn?.addEventListener('click', () => {
+        const a = parseInt(age.value,10);
+        const r = parseInt(rest.value,10);
+        if(!a || !r){ out.innerHTML = '<span class="pill warn">Isi umur & HR istirahat dulu</span>'; return; }
+        const hrmax = 220 - a;
+        const hrr = hrmax - r;
+        const z = (lo,hi) => [ r + lo*hrr, r + hi*hrr ];
+
+        const zones = [
+          ['Recovery (50–60%)', z(0.50,0.60)],
+          ['Easy (60–70%)',     z(0.60,0.70)],
+          ['Aerobic (70–80%)',  z(0.70,0.80)],
+          ['Threshold (80–90%)',z(0.80,0.90)],
+          ['VO₂max (90–100%)',  z(0.90,1.00)]
+        ];
+
+        out.innerHTML = zones.map(([name, rng]) => `<div>${name}: ${range(rng)}</div>`).join('');
+        out.insertAdjacentHTML('afterbegin', `<div class="pill ok">HRmax ≈ ${fmt(hrmax)} BPM</div>`);
+      });
     })();
   </script>
 </body>
