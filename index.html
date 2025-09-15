@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portofolio Khoirunnisa</title>
+  <style>
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f8fafc;color:#111}
+    header{background:#0073e6;color:#fff;text-align:center;padding:36px 20px}
+    header h1{margin:0;font-size:2.2em}
+    header p{margin:8px 0}
+    section{max-width:1000px;margin:40px auto;padding:0 20px}
+    h2{color:#0073e6;border-bottom:2px solid #0073e6;padding-bottom:6px}
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .card{background:#fff;border:1px solid #ddd;border-radius:10px;box-shadow:0 2px 5px rgba(0,0,0,.08);overflow:hidden}
+    .card-body{padding:14px 16px 18px}
+    .meta{display:flex;align-items:center;justify-content:space-between}
+    .tag{font-size:12px;background:#f3f4f6;border:1px solid #ddd;padding:2px 8px;border-radius:999px}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    footer{background:#0073e6;color:#fff;text-align:center;padding:20px;margin-top:40px}
+    @media(max-width:600px){header h1{font-size:1.6em}}
+
+    /* Galeri & Lightbox */
+    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+    .gallery-grid.two{grid-template-columns:repeat(2,1fr)}
+    .gallery-grid img{width:100%;height:90px;object-fit:cover;border-radius:8px;cursor:pointer;border:1px solid #e5e7eb}
+    .thumb{width:100%;height:160px;object-fit:cover}
+    .lightbox{
+      position:fixed;inset:0;background:rgba(0,0,0,.8);
+      display:none;align-items:center;justify-content:center;z-index:9999;padding:20px
+    }
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .lightbox .close{
+      position:absolute;top:16px;right:16px;background:#111827;color:#fff;border:none;
+      border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:700;font-size:20px
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>Khoirunnisa</h1>
+    <p>Biomedical Engineer • IoT • Signal Processing</p>
+    <p><a href="mailto:khoiirunnisaa2@gmail.com" style="color:white;">khoiirunnisaa2@gmail.com</a></p>
+  </header>
+
+  <!-- PROFIL -->
+  <section>
+    <h2>Profil</h2>
+    <p>Sarjana Teknik Biomedis dengan keahlian sistem berbasis sensor & mikrokontroler,
+       pengolahan sinyal biomedis (ECG, EEG, Doppler), serta dokumentasi teknis.
+       Terampil menggunakan Python, MATLAB, dan Arduino.</p>
+  </section>
+
+  <!-- PROYEK -->
+  <section>
+    <h2>Proyek</h2>
+    <div class="grid">
+      <!-- Proyek 1: EMG tanpa gambar -->
+      <div class="card">
+        <div class="card-body">
+          <div class="meta">
+            <h3>Sistem Akuisisi Sinyal EMG</h3>
+            <span class="tag">2023</span>
+          </div>
+          <p>Mengembangkan sistem akuisisi sinyal EMG untuk gerakan supinasi–pronasi.</p>
+        </div>
+      </div>
+
+      <!-- Proyek 2: Extra Finger dengan gambar -->
+      <div class="card">
+        <img class="thumb" src="images/extra-finger.jpg" alt="Syndactyly Extra Finger">
+        <div class="card-body">
+          <div class="meta">
+            <h3>Syndactyly Extra Finger</h3>
+            <span class="tag">2023</span>
+          </div>
+          <p>Prototipe jari tambahan berbasis Arduino untuk penderita sindaktili.</p>
+        </div>
+      </div>
+
+      <!-- Proyek 3: Kotak Alkes tanpa gambar -->
+      <div class="card">
+        <div class="card-body">
+          <div class="meta">
+            <h3>Kotak Penyimpanan Alat Kesehatan</h3>
+            <span class="tag">2023</span>
+          </div>
+          <p>Sistem penyimpanan alat operasi dengan sensor proximity.</p>
+        </div>
+      </div>
+
+      <!-- Proyek 4: ECVT dengan 3 gambar -->
+      <article class="card">
+        <img class="thumb" src="images/ecvt-3d-1.jpg" alt="Rekonstruksi 2D→3D ECVT">
+        <div class="card-body">
+          <div class="meta">
+            <h3>Rekonstruksi 2D→3D ECVT</h3>
+            <span class="tag">2024</span>
+          </div>
+          <p>Model rekonstruksi citra otak 3D dari data ECVT untuk analisis awal klinis.</p>
+          <div class="tags">
+            <span class="tag">ECVT</span><span class="tag">Reconstruction</span><span class="tag">Python/MATLAB</span>
+          </div>
+          <div class="gallery-grid" data-gallery="ecvt">
+            <img src="images/ecvt-3d-1.jpg" alt="ECVT 1" data-full="images/ecvt-3d-1.jpg">
+            <img src="images/ecvt-3d-2.jpg" alt="ECVT 2" data-full="images/ecvt-3d-2.jpg">
+            <img src="images/ecvt-3d-3.jpg" alt="ECVT 3" data-full="images/ecvt-3d-3.jpg">
+          </div>
+        </div>
+      </article>
+
+      <!-- Proyek 5: IoT dengan 2 gambar -->
+      <article class="card">
+        <img class="thumb" src="images/iot-heart-rate-1.jpg" alt="Monitoring Denyut Nadi IoT">
+        <div class="card-body">
+          <div class="meta">
+            <h3>Monitoring Denyut Nadi IoT</h3>
+            <span class="tag">2024</span>
+          </div>
+          <p>Pemantauan denyut nadi atlet ke dashboard cloud untuk pengendalian beban latihan.</p>
+          <div class="tags">
+            <span class="tag">IoT</span><span class="tag">ThingSpeak</span><span class="tag">Sensor</span>
+          </div>
+          <div class="gallery-grid two" data-gallery="iot">
+            <img src="images/iot-heart-rate-1.jpg" alt="IoT 1" data-full="images/iot-heart-rate-1.jpg">
+            <img src="images/iot-heart-rate-2.jpg" alt="IoT 2" data-full="images/iot-heart-rate-2.jpg">
+          </div>
+        </div>
+      </article>
+
+      <!-- Proyek 6: Doppler -->
+      <div class="card">
+        <img class="thumb" src="images/doppler-cat.jpg" alt="TA: Audio Doppler Janin Kucing">
+        <div class="card-body">
+          <div class="meta">
+            <h3>TA: Analisis Audio Doppler Janin Kucing</h3>
+            <span class="tag">2025</span>
+          </div>
+          <p>Prediksi jumlah janin kucing dengan metode STFT & EMD.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Khoirunnisa • GitHub Pages</p>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="close" aria-label="Close">&times;</button>
+    <img src="" alt="Preview">
+  </div>
+
+  <script>
+    (function(){
+      const lb = document.getElementById('lightbox');
+      const lbImg = lb.querySelector('img');
+      const btnClose = lb.querySelector('.close');
+
+      // buka lightbox
+      document.addEventListener('click', function(e){
+        const t = e.target;
+        if(t.tagName === 'IMG' && t.closest('.gallery-grid')){
+          const full = t.getAttribute('data-full') || t.src;
+          lbImg.src = full;
+          lb.classList.add('open');
+        }
+      });
+
+      // tutup lightbox
+      function closeLB(){
+        lb.classList.remove('open');
+        setTimeout(()=>{ lbImg.src = ''; }, 150);
+      }
+      btnClose.addEventListener('click', closeLB);
+      lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLB(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLB(); });
+    })();
+  </script>
+</body>
+</html>
