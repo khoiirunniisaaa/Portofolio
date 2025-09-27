@@ -33,11 +33,10 @@
     figcaption{font-size:13px;color:#555;margin-top:6px}
     details{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin-top:10px}
     details summary{cursor:pointer;font-weight:700;color:#0b6efd}
-    .calc{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .calc input{padding:8px 10px;border:1px solid #d1d5db;border-radius:8px;width:120px}
-    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e5e7eb;margin-right:6px;margin-top:6px;background:#fff}
-    .ok{color:#065f46;background:#d1fae5;border-color:#10b981}
-    .warn{color:#92400e;background:#fef3c7;border-color:#f59e0b}
+
+    /* Tambahan untuk caption IoT */
+    .gitem{display:flex;flex-direction:column;gap:4px}
+    .cap{font-size:12px;color:#555;text-align:center}
   </style>
 </head>
 <body>
@@ -70,7 +69,7 @@
         </div>
       </div>
 
-      <!-- Extra Finger (Gambar 5) -->
+      <!-- Extra Finger -->
       <div class="card">
         <img class="thumb" src="images/extra-finger.jpg" alt="Syndactyly Extra Finger">
         <div class="card-body">
@@ -90,7 +89,7 @@
         </div>
       </div>
 
-      <!-- Kotak Alkes: tanpa gambar -->
+      <!-- Kotak Alkes -->
       <div class="card">
         <div class="card-body">
           <div class="meta">
@@ -101,7 +100,7 @@
         </div>
       </div>
 
-      <!-- ECVT (Gambar 2–4) -->
+      <!-- ECVT -->
       <article class="card">
         <img class="thumb" src="images/ecvt-3d-1.png" alt="ECVT Recon 2D→3D">
         <div class="card-body">
@@ -126,38 +125,38 @@
         </div>
       </article>
 
-      <!-- IoT Heart Rate (Gambar 6–7) + kalkulator zona -->
+      <!-- IoT Heart Rate (modifikasi) -->
       <article class="card">
         <img class="thumb" src="images/iot-heart-rate-1.jpg" alt="IoT Heart Rate device">
         <div class="card-body">
           <div class="meta">
-            <h3>IoT Heart Rate – Monitoring & Zona Latihan</h3>
+            <h3>IoT Heart Rate — Wearable + Aplikasi HP + ThingSpeak</h3>
             <span class="tag">2024</span>
           </div>
-          <p>Perangkat wearable yang mengirimkan BPM ke dashboard (ThingSpeak) untuk pemantauan pelatih dan penentuan zona latihan optimal.</p>
+          <p>Sistem pemantauan detak jantung end-to-end: <b>alat wearable</b> mengukur BPM lalu mengirim data ke <b>aplikasi HP</b> (melalui BLE/serial-bridge). Aplikasi menampilkan BPM dan profil pengguna, sekaligus <b>sinkron ke cloud ThingSpeak</b> agar grafik riwayat bisa dipantau dari mana saja.</p>
           <div class="gallery-grid two" data-gallery="iot">
-            <img src="images/iot-heart-rate-1.jpg" alt="Wearable HR" data-full="images/iot-heart-rate-1.jpg">
-            <img src="images/iot-heart-rate-2.jpg" alt="Dashboard HR" data-full="images/iot-heart-rate-2.jpg">
-          </div>
-
-          <!-- Kalkulator zona latihan -->
-          <details open>
-            <summary>Kalkulator zona latihan (otomatis)</summary>
-            <div class="calc">
-              <input type="number" id="age" placeholder="Umur (th)" min="5" max="100">
-              <input type="number" id="rest" placeholder="HR istirahat (BPM)" min="30" max="120">
-              <button id="calcBtn">Hitung zona</button>
+            <div class="gitem">
+              <img src="images/iot-heart-rate-1.jpg" alt="Perangkat wearable IoT HR" data-full="images/iot-heart-rate-1.jpg">
+              <div class="cap">Gambar 1 — Wearable HR (sensor + mikrokontroler)</div>
             </div>
-            <div id="zones" style="margin-top:8px;"></div>
-            <p style="font-size:13px;color:#555;margin-top:8px">
-              Rumus: <b>HRmax = 220 − umur</b>, <b>HRR = HRmax − HRist</b>, Target = HRist + %×HRR.
-              Zona: Recovery 50–60%, Easy 60–70%, Aerobic 70–80%, Threshold 80–90%, VO₂max 90–100%.
-            </p>
+            <div class="gitem">
+              <img src="images/iot-heart-rate-2.jpg" alt="Aplikasi HP terintegrasi dengan ThingSpeak" data-full="images/iot-heart-rate-2.jpg">
+              <div class="cap">Gambar 2 — Aplikasi HP (terintegrasi ThingSpeak)</div>
+            </div>
+          </div>
+          <details style="margin-top:10px">
+            <summary>Cara membaca tampilan di aplikasi HP</summary>
+            <ul>
+              <li><b>Profil pengguna</b>: identitas & parameter dasar (umur/berat/tinggi) untuk konteks latihan.</li>
+              <li><b>BPM besar</b>: nilai detak jantung saat ini (near real-time) dari perangkat.</li>
+              <li><b>Grafik ThingSpeak</b>: riwayat BPM tersinkron; puncak rapat = intensitas tinggi, penurunan cepat = recovery. Garis datar/0 bisa menandakan sensor lepas atau koneksi terputus.</li>
+              <li><b>Kualitas data</b>: kencangkan strap, minimalkan gerak mendadak, pastikan koneksi stabil agar noise berkurang.</li>
+            </ul>
           </details>
         </div>
       </article>
 
-      <!-- Doppler STFT (Gambar 1) -->
+      <!-- Doppler -->
       <article class="card">
         <img class="thumb" src="images/doppler-cat.png" alt="STFT Doppler - Prediksi Jumlah Janin">
         <div class="card-body">
@@ -210,37 +209,6 @@
       btnClose.addEventListener('click', closeLB);
       lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLB(); });
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLB(); });
-    })();
-
-    // Kalkulator zona latihan (Karvonen)
-    (function(){
-      const age = document.getElementById('age');
-      const rest = document.getElementById('rest');
-      const btn = document.getElementById('calcBtn');
-      const out = document.getElementById('zones');
-
-      function fmt(n){ return Math.round(n); }
-      function range(val){ return `<span class="pill">${fmt(val[0])}–${fmt(val[1])} BPM</span>`; }
-
-      btn?.addEventListener('click', () => {
-        const a = parseInt(age.value,10);
-        const r = parseInt(rest.value,10);
-        if(!a || !r){ out.innerHTML = '<span class="pill warn">Isi umur & HR istirahat dulu</span>'; return; }
-        const hrmax = 220 - a;
-        const hrr = hrmax - r;
-        const z = (lo,hi) => [ r + lo*hrr, r + hi*hrr ];
-
-        const zones = [
-          ['Recovery (50–60%)', z(0.50,0.60)],
-          ['Easy (60–70%)',     z(0.60,0.70)],
-          ['Aerobic (70–80%)',  z(0.70,0.80)],
-          ['Threshold (80–90%)',z(0.80,0.90)],
-          ['VO₂max (90–100%)',  z(0.90,1.00)]
-        ];
-
-        out.innerHTML = zones.map(([name, rng]) => `<div>${name}: ${range(rng)}</div>`).join('');
-        out.insertAdjacentHTML('afterbegin', `<div class="pill ok">HRmax ≈ ${fmt(hrmax)} BPM</div>`);
-      });
     })();
   </script>
 </body>
